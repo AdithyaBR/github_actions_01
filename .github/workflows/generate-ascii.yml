@@ -17,6 +17,7 @@ jobs:
         cat dragon.txt
       
   test_job_2:
+    needs: build_job_1
     runs-on: ubuntu-24.04
     steps:
       - name: sleep for 10 seconds
@@ -24,6 +25,7 @@ jobs:
       - name: grep dragon file
         run: grep -i dragon dragon.txt
   deploy_job_3:
+    needs: build_job_1
     runs-on: ubuntu-24.04
     steps:
       - name: read that file
