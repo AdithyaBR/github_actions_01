@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: checkout repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4; echo "Github SHA is ${{ github.sha }}"
     - name: install cowsay program
       run: sudo apt-get install cowsay -y
     - name: execute cowasat
@@ -19,7 +19,7 @@ jobs:
     - name: upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: dragon-artifact text
+        name: dragon-artifact-text-${{ github.run_number }}
         path: dragon.txt
       
   test_job_2:
@@ -31,7 +31,7 @@ jobs:
     - name: download
       uses: actions/download-artifact@v4
       with:
-        name: dragon-artifact text
+        name: dragon-artifact-text-${{ github.run_number }}
     - name: grep dragon file
       run: grep -i dragon dragon.txt
   deploy_job_3:
@@ -41,7 +41,7 @@ jobs:
     - name: download
       uses: actions/download-artifact@v4   
       with:
-        name: dragon-artifact text
+        name: dragon-artifact-text-${{ github.run_number }}
     - name: read that file
       run: cat dragon.txt
   
