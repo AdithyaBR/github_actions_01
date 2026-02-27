@@ -19,7 +19,7 @@ jobs:
     - name: upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: dragon-artifact tect file
+        name: dragon-artifact text
         path: dragon.txt
       
   test_job_2:
@@ -31,6 +31,7 @@ jobs:
     - name: download
       uses: actions/download-artifact@v4
       with:
+        name: dragon-artifact text
         path: dragon.txt
     - name: grep dragon file
       run: grep -i dragon dragon.txt
@@ -42,6 +43,7 @@ jobs:
       uses: actions/download-artifact@v4   
       with:
         path: dragon.txt
+        name: dragon-artifact text
     - name: read that file
       run: cat dragon.txt
   
