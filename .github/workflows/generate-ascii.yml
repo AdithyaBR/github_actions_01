@@ -8,14 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: checkout repo
-      uses: actions/checkout@v4; echo "Github SHA is ${{ github.sha }}"
+      uses: actions/checkout@v4; 
     - name: install cowsay program
-      run: sudo apt-get install cowsay -y
+      run: sudo apt-get install cowsay -y ; echo "Github SHA is ${{ github.sha }}"
     - name: execute cowasat
       run: |
         cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
         ls
         cat dragon.txt
+        echo "Github SHA is ${{ github.sha }}"
     - name: upload artifacts
       uses: actions/upload-artifact@v4
       with:
