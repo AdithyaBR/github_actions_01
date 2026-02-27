@@ -30,6 +30,8 @@ jobs:
       run: sleep 10
     - name: download
       uses: actions/download-artifact@v4
+      with:
+        path: dragon.txt
     - name: grep dragon file
       run: grep -i dragon dragon.txt
   deploy_job_3:
@@ -37,7 +39,9 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
     - name: download
-      uses: actions/download-artifact@v4    
+      uses: actions/download-artifact@v4   
+      with:
+        path: dragon.txt
     - name: read that file
       run: cat dragon.txt
   
