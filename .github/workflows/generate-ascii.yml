@@ -4,11 +4,29 @@ on:
   push
 
 jobs:
-  ascii_job:
+  build_job_1:
     runs-on: ubuntu-24.04
     steps:
     - name: checkout repo
       uses: actions/checkout@v4
-    - name: executing  shell script
-      run: cd .github/workflows; ls;chmod +x ascii-script.sh;   ./ascii-script.sh  
+    - name: install cowsay program
+      uses: sudo apt-get install cowsay -y
+    - name: execute cowasat
+      run: |
+        cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
+        cat dragon.txt
+      
+  test_job_2:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: sleep for 10 seconds
+        run: sleep 10
+      - name: grep dragon file
+        run: grep -i dragon dragon.txt
+  deploy_job_3:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: read that file
+        run: cat dragon.txt
+  
       
