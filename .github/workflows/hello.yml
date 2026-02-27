@@ -10,4 +10,11 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v5
       - name: say hello
-        run: echo "Hello, Adi! isn't it easy"
+        run: |
+          echo "Hello, Adi! isn't it easy"
+          ls -ltra
+          cat README>md
+
+      - name: Generate ASCII ArtWoek
+        run: cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
+        
