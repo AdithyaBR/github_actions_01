@@ -13,7 +13,7 @@ jobs:
         run: |
           echo "Hello, Adi! isn't it easy"
           ls -ltra
-          cat README>md
+          cat README.md
 
       - name: Generate ASCII ArtWoek
         run: cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
