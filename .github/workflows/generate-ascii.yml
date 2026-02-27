@@ -10,5 +10,5 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v4
     - name: executing  shell script
-      run: ls;chmod +x ascii-script.sh;   ./ascii-script.sh  
+      run: ls;chmod +x ascii-script.sh;cd .github/workflows;   ./ascii-script.sh  
       
