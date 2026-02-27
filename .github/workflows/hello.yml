@@ -10,4 +10,4 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v5
       - name: say hello
-        run: echo "Hello, world!"
+        run: echo "Hello, Adi! isn't it easy"
