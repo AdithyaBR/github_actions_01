@@ -14,21 +14,22 @@ jobs:
     - name: execute cowasat
       run: |
         cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
+        ls
         cat dragon.txt
       
   test_job_2:
     needs: build_job_1
     runs-on: ubuntu-24.04
     steps:
-      - name: sleep for 10 seconds
-        run: sleep 10
-      - name: grep dragon file
-        run: grep -i dragon dragon.txt
+    - name: sleep for 10 seconds
+      run: sleep 10
+    - name: grep dragon file
+      run: grep -i dragon dragon.txt
   deploy_job_3:
     needs: build_job_1
     runs-on: ubuntu-24.04
     steps:
-      - name: read that file
-        run: cat dragon.txt
+    - name: read that file
+      run: cat dragon.txt
   
       
