@@ -16,7 +16,7 @@ jobs:
         cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
         ls
         cat dragon.txt
-        echo "Github SHA is ${{ github.sha }}"
+        echo "Github SHA is "${{ github.sha }}
     - name: upload artifacts
       uses: actions/upload-artifact@v4
       with:
