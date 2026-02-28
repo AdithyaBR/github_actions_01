@@ -7,13 +7,13 @@ on:
 jobs:
   deploy-on-multiple-os:
     strategy:
-    matrix:
-      os:[ubuntu-latest, windows-latest, macos-latest]
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     timeout-minutes: 1
     steps:
-      - name : echo docker details
+      - name: echo docker details
         run: docker info
-      - name:  run images
+      - name: run images
         run: docker run hello-world
 
 
