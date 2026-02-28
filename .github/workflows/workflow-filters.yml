@@ -16,7 +16,7 @@ on:
   pull_request:
     types: [opened, closed]
     paths-ignore:
-      - 'README.md''
+      - 'README.md'
     branches:
       - dev/*
 
