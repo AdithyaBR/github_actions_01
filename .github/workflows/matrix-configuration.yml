@@ -1,5 +1,4 @@
 name: matric configuration 
-
 on:
   push:
   workflow_dispatch:
@@ -7,17 +6,24 @@ on:
 jobs:
   deploy-on-multiple-os:
     strategy:
+      fail-fast: false
+      max-parallel: 2
       matrix:
-        os: [ubuntu-latest]
-        images: [hello-world]
+        os: [ubuntu-latest, windows-latest, macos-latest, ubuntu-22.04]
+        images: [hello-world, alpine]
+        exclude:
+          - images: alpine
+            os: windows-latest
+        include:
+          - images: amd64/alpine
+            os: ubuntu-22.04
+
     runs-on: ${{ matrix.os }}
     steps:
       - name: echo docker details
         run: docker info
+
       - name: run images
         run: docker run ${{matrix.images}}
-
-
-
 
 
