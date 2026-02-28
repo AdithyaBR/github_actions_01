@@ -5,8 +5,9 @@ on:
   workflow_dispatch:
   
 jobs:
-  deploy-on-ubuntu:
+  deploy-on-multiple-os:
     runs-on: [ubuntu-latest,windows-latest]
+    timeout-minutes: 1
     steps:
       - name : echo docker details
         run: docker info
