@@ -9,7 +9,8 @@ jobs:
       !(
         contains(github.event.head_commit.message, 'skip ci') ||
         contains(github.event.head_commit.message, '[skip actions]') ||
-        contains(github.event.head_commit.message, '[ci skip]')
+        contains(github.event.head_commit.message, '[ci skip]')||
+        contains(github.event.head_commit.message, '[skip build]')
       )
     runs-on: ubuntu-latest
     steps:
