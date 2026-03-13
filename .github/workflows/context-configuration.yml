@@ -5,6 +5,13 @@ on:
   
 jobs:
   dump_contexts_to_log:
+    if: |
+      !(
+        contains(github.event.head_commit.message, 'skip ci') ||
+        contains(github.event.head_commit.message, '[skip actions]') ||
+        contains(github.event.head_commit.message, '[ci skip]')||
+        contains(github.event.head_commit.message, '[skip build]')
+      )
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
@@ -31,5 +38,7 @@ jobs:
         env:
           SECRET_CONTEXT: ${{ toJson(secrets) }}
         run: echo "$SECRET_CONTEXT"
+
+        
 
 
