@@ -23,8 +23,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const errors = ${{ steps.results.outputs.errors }};
-            const warnings = ${{ steps.results.outputs.warnings }};
+            // If you have outputs from previous steps, pass them as environment variables
+            const errors = process.env.ERRORS || '0';
+            const warnings = process.env.WARNINGS || '0';
             const summary = `
 ## 🛠 Build Result Summary
 
@@ -34,11 +35,10 @@ jobs:
 
 ✔ Deployment URL: https://example.azurestaticapps.net
 `;
-
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: summary
-        });
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: summary
+            });
         
