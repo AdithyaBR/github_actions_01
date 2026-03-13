@@ -17,4 +17,28 @@ jobs:
 
       - name: Generate ASCII ArtWoek
         run: cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
+      - name: Publish Summary
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const errors = ${{ steps.results.outputs.errors }};
+            const warnings = ${{ steps.results.outputs.warnings }};
+            const summary = `
+## 🛠 Build Result Summary
+
+| Errors | Warnings |
+|--------|----------|
+| ${errors} | ${warnings} |
+
+✔ Deployment URL: https://example.azurestaticapps.net
+`;
+
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: summary
+        });
         
