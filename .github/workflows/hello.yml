@@ -18,7 +18,7 @@ jobs:
           ls -ltra
           cat README.md
 
-      - name: Generate ASCII ArtWoek
+      - name: Generate ASCII Artwork
         run: cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
       - name: Publish Summary
         if: github.event_name == 'pull_request'
@@ -30,14 +30,14 @@ jobs:
             const errors = process.env.ERRORS || '0';
             const warnings = process.env.WARNINGS || '0';
             const summary = `
-## 🛠 Build Result Summary
+              ## 🛠 Build Result Summary
 
-| Errors | Warnings |
-|--------|----------|
-| ${errors} | ${warnings} |
+              | Errors | Warnings |
+              |--------|----------|
+              | ${errors} | ${warnings} |
 
-✔ Deployment URL: https://example.azurestaticapps.net
-`;
+              ✔ Deployment URL: https://example.azurestaticapps.net
+            `;
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
